@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+.spacer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.toast{
+  position: fixed;
+  width: 300px;
+  padding:5px 5px;
+  border-radius: 10px;
+  background-color: rgb(127, 191, 255);
+  color:rgb(61, 59, 59);
+  top: 100px;
+  left: 10px;
+  text-align: center;
+  animation-name: toastMove;
+  animation-duration: .5s;
+}
+
+.toast h1{
+  margin: 0;
+  padding:0;
+  font-weight:400;
+  font-size: 20px;
+}
+
+@keyframes toastMove{
+  0%{
+    left:-350px;
+    background-color: transparent;
+  }
+
+  100%{
+    left:10px;
+    background-color: rgb(127, 191, 255);
+  }
+}
+
+
+.p{
+  color:rgb(47, 46, 46);
+
+}
+.error{
+  width:300px;
+  background:rgb(237, 79, 79);
+  padding:3px;
+  border-radius:10px;
+  text-align: center;
+  animation-name: mostrarError;
+  animation-duration: 2s;
+}
+
+@keyframes mostrarError {
+  0%{
+    background:transparent;
+    color:transparent;
+  }
+  100%{
+    background:rgb(237, 79, 79);
+    color:white;
+  }
+}

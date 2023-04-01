@@ -1,0 +1,48 @@
+<div fxLayout="row"
+fxLayout.xs="column"
+fxLayoutAlign="center"
+fxLayoutGap="30px">
+<div
+  fxFlex.sm="50"
+  fxFlex.md="40"
+  fxFlex.lg="26"
+  fxFlex.xl="20"
+>
+
+   <h1>{{ heroe.superhero }}</h1>
+   <mat-divider></mat-divider>
+   <br>
+   <img mat-card-image [src]="heroe | image" [alt]="[heroe._id]">
+</div>
+
+
+<div
+  fxFlex.sm="50"
+  fxFlex.md="40"
+  fxFlex.lg="26"
+  fxFlex.xl="20"
+  >
+   <h1>{{heroe.alter_ego}}</h1>
+   <mat-divider></mat-divider>
+   <br>
+   <mat-list>
+     <mat-list-item>Nombre: {{heroe.superhero}}</mat-list-item>
+     <mat-list-item>Publicación: {{heroe.publisher}}</mat-list-item>
+     <mat-list-item>Personaje principal: {{heroe.alter_ego}}</mat-list-item>
+     <mat-list-item>Personajes: {{heroe.characters}}</mat-list-item>
+     <mat-list-item>1ª aparición: {{heroe.first_appearance}}</mat-list-item>
+   </mat-list>
+
+   <br>
+
+
+   <button
+         mat-button
+         color="warn"
+         (click)="goBack()"
+   >Volver</button>
+
+
+</div>
+
+</div>

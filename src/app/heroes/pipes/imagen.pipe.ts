@@ -14,7 +14,7 @@ export class imagePipe implements PipeTransform {
 
      return `assets/heroes/${heroe.publisher.substring(0,2).toLowerCase()}-${heroe.superhero.split(' ')[0].toLowerCase().trim()}.jpg`
    }else{
-     return heroe.alt_img!
+     return heroe.alt_img
    }
 
   }

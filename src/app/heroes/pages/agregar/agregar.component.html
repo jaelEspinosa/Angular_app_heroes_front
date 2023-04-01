@@ -1,6 +1,6 @@
 
 
-<h1 *ngIf="!id; else editarDiv" class="form">Nuevo Héroe <small>{{heroe.superhero}}</small></h1>
+<h1 *ngIf="!heroe._id; else editarDiv" class="form">Nuevo Héroe <small>{{heroe.superhero}}</small></h1>
 
 <ng-template #editarDiv>
   <h1 class="form"> Editar Héroe <small>{{heroe.superhero}}</small></h1>
@@ -79,17 +79,25 @@
     </div>
     <br>
 
-
-    <button
-            [disabled]="saved"
-            (click) = "guardar()"
-            mat-raised-button
-            color="primary">
-      <mat-icon>edit</mat-icon>
-      <span *ngIf="!id; else editarSpan">Agregar</span>
-      <ng-template #editarSpan>Guardar Cambios</ng-template>
-    </button>
     <mat-divider></mat-divider>
+    <div class="spacer mtop">
+          <button
+                  [disabled]="saved"
+                  (click) = "guardar()"
+                  mat-raised-button
+                  color="primary">
+            <mat-icon>edit</mat-icon>
+            <span *ngIf="!heroe._id; else editarSpan">Agregar</span>
+            <ng-template #editarSpan>Guardar Cambios</ng-template>
+          </button>
+          <button  *ngIf="heroe._id"
+                   (click)="delete()"
+                   color="warn"
+                   mat-raised-button>Eliminar
+           <mat-icon>delete</mat-icon>
+          </button>
+
+    </div>
 
   </div>
   <div fxFlex="50">

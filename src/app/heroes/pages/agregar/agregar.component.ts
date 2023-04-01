@@ -2,6 +2,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Heroe, Publisher } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { switchMap } from 'rxjs';
 
 
 @Component({
@@ -30,15 +31,16 @@ import { HeroesService } from '../../services/heroes.service';
 export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
-    this.activatedRoute.params
-    .subscribe(({ id })=> this.id = id)
 
-  if (this.id){
-    this.heroesService.getHeroe( this.id )
-    .subscribe(heroe => {
-      this.heroe = heroe
-    })
-    }
+    if(!this.router.url.includes('editar') ) return;
+
+
+    this.activatedRoute.params
+    .pipe(
+      switchMap(({ id })=> this.heroesService.getHeroe( id ))
+    )
+     .subscribe( heroe => this.heroe = heroe );
+
 
   }
 
@@ -67,7 +69,7 @@ heroe: Heroe = {
   alt_img:''
 }
 
-id: string = ''
+
 saved: boolean = false;
 isValidForm: boolean = true;
 
@@ -85,19 +87,24 @@ guardar() {
       }, 2000);
       return;
      }
-
-
-if(!this.id){
+if(!this.heroe._id){
   this.heroesService.agregarHeroe( this.heroe ).subscribe(heroe => this.heroe = heroe)
   this.saved = true
 }else{
- this.heroesService.editarHeroe( this.heroe, this.id ).subscribe(heroe => this.heroe = heroe)
+ this.heroesService.editarHeroe( this.heroe, this.heroe._id ).subscribe(heroe => this.heroe = heroe)
  this.saved = true
 }
 setTimeout(() => {
   this.saved=false
   this.router.navigate([`/heroes/${this.heroe._id}`])
 }, 2500);
+}
+delete(){
+  this.heroesService.eliminarHeroe(this.heroe._id!)
+  .subscribe(resp => {
+   this.router.navigate(['/heroes'])
+
+  })
 }
 
 }

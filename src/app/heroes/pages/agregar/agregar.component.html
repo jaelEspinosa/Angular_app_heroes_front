@@ -1,10 +1,9 @@
 
 
-<h1 *ngIf="!heroe._id; else editarDiv" class="form">Nuevo Héroe <small>{{heroe.superhero}}</small></h1>
+  <h1 class="form">
+    {{heroe._id ? 'Editar' : 'Nuevo'}}
+    Héroe <small>{{heroe.superhero}}</small></h1>
 
-<ng-template #editarDiv>
-  <h1 class="form"> Editar Héroe <small>{{heroe.superhero}}</small></h1>
-</ng-template>
 
 <div
 
@@ -87,10 +86,17 @@
                   mat-raised-button
                   color="primary">
             <mat-icon>edit</mat-icon>
-            <span *ngIf="!heroe._id; else editarSpan">Agregar</span>
-            <ng-template #editarSpan>Guardar Cambios</ng-template>
+            {{heroe._id ? 'Guardar Cambios' : 'Crear Nuevo'}}
+
+          </button>
+          <button
+                   (click)="regresar()"
+                   color="info"
+                   mat-raised-button>Volver
+           <mat-icon>chevron_left</mat-icon>
           </button>
           <button  *ngIf="heroe._id"
+                   [disabled]="saved"
                    (click)="delete()"
                    color="warn"
                    mat-raised-button>Eliminar
@@ -103,8 +109,4 @@
   <div fxFlex="50">
     <img [src]="heroe | image" alt="photo">
   </div>
-</div>
-
-<div *ngIf="saved" class="toast" >
-  <h1>Guardado correctamente...</h1>
 </div>

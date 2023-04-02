@@ -1,8 +1,11 @@
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Heroe, Publisher } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 
 @Component({
@@ -47,7 +50,9 @@ export class AgregarComponent implements OnInit {
 
   constructor (private heroesService: HeroesService,
                private activatedRoute: ActivatedRoute,
-               private router: Router
+               private router: Router,
+               private snackBar: MatSnackBar,
+               public dialog: MatDialog
                ){}
 
   publishers = [
@@ -89,22 +94,49 @@ guardar() {
      }
 if(!this.heroe._id){
   this.heroesService.agregarHeroe( this.heroe ).subscribe(heroe => this.heroe = heroe)
+  this.mostrarSnakBar('Guardado');
   this.saved = true
 }else{
  this.heroesService.editarHeroe( this.heroe, this.heroe._id ).subscribe(heroe => this.heroe = heroe)
+ this.mostrarSnakBar('Actualizado');
  this.saved = true
 }
 setTimeout(() => {
   this.saved=false
   this.router.navigate([`/heroes/${this.heroe._id}`])
-}, 2500);
+}, 1000);
 }
 delete(){
-  this.heroesService.eliminarHeroe(this.heroe._id!)
-  .subscribe(resp => {
-   this.router.navigate(['/heroes'])
+this.saved=true
+const dialog = this.dialog.open( ConfirmarComponent, {
+  width :'400px',
+  data: {...this.heroe}
 
+} )
+
+dialog.afterClosed()
+ .subscribe (result =>{
+   result === true
+    ? this.heroesService.eliminarHeroe(this.heroe._id!)
+   .subscribe(resp => {
+    this.mostrarSnakBar('Eliminado');
+    setTimeout(() => {
+      this.router.navigate(['/heroes'])
+      this.saved=false
+    }, 1000);
   })
+  :
+  setTimeout(()=>{this.router.navigate(['/heroes'])},1500)
+  })
+
+}
+regresar() {
+  this.router.navigate(['/heroes'])
 }
 
+mostrarSnakBar(mensaje: string) {
+    this.snackBar.open( mensaje, 'ok!',{
+      duration:2500
+    } )
+}
 }

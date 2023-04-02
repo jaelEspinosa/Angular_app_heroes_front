@@ -20,6 +20,7 @@ de como implementar los siguientes ejemplos.
   - List
   - SideNav
   - Toolbar
+  - Dialog modal
 - Angular Flex-Layout
 
   

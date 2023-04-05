@@ -30,7 +30,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   animation-name: mostrarError;
   animation-duration: 2s;
 }
-
 @keyframes mostrarError {
   0%{
     background:transparent;
@@ -38,6 +37,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   100%{
     background:rgb(237, 79, 79);
+    color:white;
+  }
+}
+.success{
+  width:300px;
+  background:rgb(79, 237, 200);
+  padding:3px;
+  border-radius:10px;
+  text-align: center;
+  animation-name: mostrarSuccess;
+  animation-duration: 2s;
+}
+
+@keyframes mostrarSuccess{
+  0%{
+    background:transparent;
+    color:transparent;
+  }
+  100%{
+    background:rgb(79, 237, 200);
     color:white;
   }
 }
@@ -53,4 +72,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .margin{
   margin:15px;
+}
+
+.form-box{
+  color:white;
+  background-color: dimgrey;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.link-auth{
+  margin-top: 20px;
 }

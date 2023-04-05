@@ -8,6 +8,9 @@ de como implementar los siguientes ejemplos.
 - routing
 - routes(root)
 - routes(children)
+- Protección de rutas
+  - Rutas privadas
+  - Rutas públicas 
 - Lazy-Load
 - switchMap (subscribe a un observable con la respuesta de otro observable)
 - Material UI :

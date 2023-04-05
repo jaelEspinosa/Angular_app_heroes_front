@@ -1,1 +1,46 @@
-<p>login works!</p>
+
+
+
+
+
+<div class="form-box">
+  <h1>Inicia sesión</h1>
+  <h2 *ngIf="error" class="error">{{error}}</h2>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+          type="text"
+          placeholder="Email"
+          aria-label="Email"
+          autocomplete="off"
+          [(ngModel)]="user.email"
+          matInput
+      >
+    </mat-form-field>
+     <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+            type="password"
+            placeholder="password"
+            autocomplete="off"
+            aria-label="Password"
+            [(ngModel)]="user.password"
+            matInput
+        >
+
+    </mat-form-field>
+
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="login()"
+        >
+      Login
+    </button>
+<button
+        mat-raised-button
+        routerLink="/auth/register"
+        class="link-auth"
+        >¿No tienes cuenta?</button>
+</div>

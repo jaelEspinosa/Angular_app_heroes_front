@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Heroe } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscar',
@@ -23,9 +24,18 @@ import { HeroesService } from '../../services/heroes.service';
     `
   ]
 })
-export class BuscarComponent {
+export class BuscarComponent implements OnInit{
 
-  constructor( private heroesService: HeroesService){}
+
+  ngOnInit(): void {
+    const user = localStorage.getItem('heroes-token')
+    if (!user){
+      this.router.navigate(['./auth/login'])
+    }
+  }
+
+  constructor( private heroesService: HeroesService,
+               private router: Router){}
 
 termino: string = '';
 heroes: Heroe[] = [];

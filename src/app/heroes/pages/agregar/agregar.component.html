@@ -4,6 +4,7 @@
     {{heroe._id ? 'Editar' : 'Nuevo'}}
     Héroe <small>{{heroe.superhero}}</small></h1>
 
+    <h2 *ngIf="error" class="error">{{error}}</h2>
 
 <div
 

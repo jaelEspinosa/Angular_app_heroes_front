@@ -1,5 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Heroe } from '../../interfaces/heroe.interface';
@@ -25,6 +25,11 @@ export class HeroeComponent implements OnInit{
 
 ngOnInit(): void {
 
+  const user = localStorage.getItem('heroes-token')
+  if (!user){
+    this.router.navigate(['./auth/login'])
+  }
+
   this.activatedRoute.params
   .pipe(
     switchMap(({ id }) => this.heroesService.getHeroe( id ))
@@ -33,4 +38,6 @@ ngOnInit(): void {
 
 
  }
+
+
 }

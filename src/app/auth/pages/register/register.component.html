@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="form-box">
+  <h1>Nuevo usuario</h1>
+  <h2 *ngIf="error" class="error">{{error}}</h2>
+  <h2 *ngIf="success" class="success">{{success}}</h2>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input type="text"
+      placeholder="Nombre"
+      aria-label="Nombre"
+      [(ngModel)]="user.nombre"
+      (input)="clearError()"
+      matInput
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="text"
+      placeholder="Email"
+      aria-label="Email"
+      [(ngModel)]="user.email"
+      (input)="clearError()"
+      matInput
+      >
+    </mat-form-field>
+     <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password"
+        placeholder="password"
+        aria-label="Password"
+        [(ngModel)]="user.password"
+        (input)="clearError()"
+        matInput
+        >
+
+    </mat-form-field>
+
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="register()"
+        >
+      Registro
+    </button>
+    <button
+        mat-raised-button
+        routerLink="/auth/login"
+        class="link-auth"
+        >Ir a Login</button>
+
+</div>

@@ -14,12 +14,12 @@ const routes : Routes= [
 
   },
   {
-    path: '404',
+    path: 'heroes',
     component: ErrorPageComponent
   },
   {
     path:'**',
-    redirectTo:'404'
+    redirectTo:'heroes'
     }
 
 ]

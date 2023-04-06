@@ -39,11 +39,13 @@ export class RegisterComponent {
 
     if(this.user.nombre.length < 4) {
       this.error = 'El Nombre es requerido y debe tener 5 letras min.';
+      this.loading = false
       return;
     }
 
     if(!validEmail.test(this.user.email)){
       this.error = 'El formato del email es inválido'
+      this.loading = false
       return
     }
 
@@ -52,18 +54,18 @@ export class RegisterComponent {
          next: res => {
           this.response = res
           this.success = this.response.msg;
+          setTimeout(() => {
+            this.router.navigate(['./auth/login'])
+            this.loading = false
+          }, 1500);
          },
          error: error =>{
            this.error = error.error.msg
-           this.loading = false
-
+           if (this.error === undefined ) this.error = 'Error de conexión'
+           this.loading = false;
          }
        }
-       )
-       setTimeout(() => {
-         this.router.navigate(['./auth/login'])
-         this.loading = false
-       }, 1500);
-  }
+      )
+     }
 
 }

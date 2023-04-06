@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+    this.user.email=this.user.email.trim().toLowerCase()
     this.loading = true
     this.authService.login(this.user)
        .subscribe({

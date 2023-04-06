@@ -33,6 +33,7 @@ export class RegisterComponent {
 
   register() {
     this.loading = true;
+    this.user.email = this.user.email.trim().toLowerCase();
 
     const validEmail = /^[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 

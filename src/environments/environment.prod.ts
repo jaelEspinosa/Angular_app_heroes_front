@@ -3,5 +3,5 @@
 
 export const environment = {
   production: true,
-  baseUrl:'https://heroes-api-one.vercel.app/'
+  baseUrl:'https://api-heroes-kgrw.onrender.com'
 }

@@ -36,11 +36,19 @@
         color="primary"
         (click)="login()"
         >
-      Login
+        <mat-progress-spinner
+        *ngIf="loading"
+        color="warn"
+        diameter="20"
+        mode="indeterminate"
+        ></mat-progress-spinner>
+        <span *ngIf="!loading">Login</span>
+
     </button>
 <button
         mat-raised-button
         routerLink="/auth/register"
         class="link-auth"
         >¿No tienes cuenta?</button>
+
 </div>

@@ -29,9 +29,11 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private authService: AuthService){}
 
+  loading: boolean = false
 
 
   login() {
+    this.loading = true
     this.authService.login(this.user)
        .subscribe({
          next: res => {
@@ -39,11 +41,15 @@ export class LoginComponent implements OnInit {
 
           localStorage.setItem('heroes-token', this.response.token)
           localStorage.setItem('heroes-user', this.response.nombre)
+          this.loading = false
           this.router.navigate(['./heroes'])
 
          },
 
-         error: error => this.error = error.error.msg
+         error: error =>{
+           this.error = error.error.msg
+           this.loading = false
+         }
        }
        )
   }

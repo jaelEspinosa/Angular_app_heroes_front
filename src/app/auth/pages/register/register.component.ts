@@ -29,7 +29,11 @@ export class RegisterComponent {
     this.error = ''
   }
 
+  loading: boolean = false
+
   register() {
+    this.loading = true;
+
     const validEmail = /^[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
     if(this.user.nombre.length < 4) {
@@ -50,12 +54,14 @@ export class RegisterComponent {
          },
          error: error =>{
            this.error = error.error.msg
+           this.loading = false
 
          }
        }
        )
        setTimeout(() => {
          this.router.navigate(['./auth/login'])
+         this.loading = false
        }, 1500);
   }
 

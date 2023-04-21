@@ -24,15 +24,7 @@ import { Router } from '@angular/router';
     `
   ]
 })
-export class BuscarComponent implements OnInit{
-
-
-  ngOnInit(): void {
-    const user = localStorage.getItem('heroes-token')
-    if (!user){
-      this.router.navigate(['./auth/login'])
-    }
-  }
+export class BuscarComponent {
 
   constructor( private heroesService: HeroesService,
                private router: Router){}
@@ -41,11 +33,9 @@ termino: string = '';
 heroes: Heroe[] = [];
 heroeSeleccionado: Heroe | undefined;
 
-
-
 buscando() {
 
- this.heroesService.getSugerencias(this.termino.trim())
+ this.heroesService.getSugerencias(this.termino.trim().toLowerCase())
  .subscribe(heroes => this.heroes = heroes)
 }
 
@@ -55,16 +45,9 @@ opcionSeleccionada( event:MatAutocompleteSelectedEvent ) {
     this.heroeSeleccionado = undefined;
     return
   }
-
  const heroe:Heroe = event.option.value;
-
-
  this.termino = heroe.superhero
  this.heroesService.getHeroe( heroe._id! )
    .subscribe ( heroe => this.heroeSeleccionado = heroe )
-
-
-
 }
-
 }

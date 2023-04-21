@@ -6,7 +6,9 @@
 <div class="form-box">
   <h1>Inicia sesión</h1>
   <h2 *ngIf="error" class="error">{{error}}</h2>
-    <mat-form-field>
+
+
+  <mat-form-field>
       <mat-label>Email</mat-label>
       <input
           type="text"
@@ -20,6 +22,7 @@
      <mat-form-field>
         <mat-label>Password</mat-label>
         <input
+            (keyup.enter)="login()"
             type="password"
             placeholder="password"
             autocomplete="off"
@@ -33,6 +36,7 @@
 
     <button
         mat-raised-button
+
         color="primary"
         (click)="login()"
         >

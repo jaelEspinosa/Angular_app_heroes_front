@@ -32,12 +32,6 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 export class AgregarComponent implements OnInit {
   ngOnInit(): void {
 
-    const user = localStorage.getItem('heroes-token')
-    if (!user){
-      this.router.navigate(['./auth/login'])
-    }
-
-
     if (!this.router.url.includes('editar')) return;
 
     this.activatedRoute.params

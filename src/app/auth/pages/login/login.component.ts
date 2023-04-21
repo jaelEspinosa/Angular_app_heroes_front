@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
        .subscribe({
          next: res => {
           this.response = res
-
           localStorage.setItem('heroes-token', this.response.token)
           localStorage.setItem('heroes-user', this.response.nombre)
           this.loading = false

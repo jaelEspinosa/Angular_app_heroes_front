@@ -25,19 +25,11 @@ export class HeroeComponent implements OnInit{
 
 ngOnInit(): void {
 
-  const user = localStorage.getItem('heroes-token')
-  if (!user){
-    this.router.navigate(['./auth/login'])
-  }
-
   this.activatedRoute.params
   .pipe(
     switchMap(({ id }) => this.heroesService.getHeroe( id ))
   )
   .subscribe(heroe => this.heroe = heroe)
 
-
  }
-
-
 }
